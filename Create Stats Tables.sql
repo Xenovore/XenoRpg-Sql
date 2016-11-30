@@ -52,16 +52,16 @@ CREATE TABLE IF NOT EXISTS StatsBase
 -- CREATE STATS MODIFIERS
 -- • What does the stat modify?
 ---------------------------------------------------------------
-DROP TABLE IF EXISTS StatModifiers;
+DROP TABLE IF EXISTS StatModifiers_map;
 
-CREATE TABLE IF NOT EXISTS StatModifiers
+CREATE TABLE IF NOT EXISTS StatModifiers_map
 (
     StatId         INTEGER,
     TargetStatId   INTEGER
 );
 
 
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -72,7 +72,7 @@ VALUES
     14
 );
     
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -83,7 +83,7 @@ VALUES
     15
 );
     
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -94,7 +94,7 @@ VALUES
     16
 );
     
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -105,7 +105,7 @@ VALUES
     1
 );
     
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -116,7 +116,7 @@ VALUES
     18
 );
 
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -128,7 +128,7 @@ VALUES
 );
     
 
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -139,7 +139,7 @@ VALUES
     18
 );
 
-INSERT INTO StatModifiers
+INSERT INTO StatModifiers_map
 ( 
     StatId,
     TargetStatId
@@ -157,17 +157,17 @@ VALUES
 SELECT
 StatsBase.Id,
 StatsBase.Name,
-StatsBase.Modifier AS OutMod,
+StatsBase.Type,
+StatTypes.Name,
 NULL,
 StatsBase2.Id AS ModAttribId,
-StatsBase2.Abbr AS ModAbbr,
-StatsBase2.Modifier AS InMod,
-NULL,
-StatModifiers.*
+StatsBase2.Abbr AS ModAbbr
+--StatModifiers_map.*
 FROM StatsBase
-JOIN StatsBase AS StatsBase2 ON StatsBase2.Id = StatModifiers.StatId
-LEFT OUTER JOIN StatModifiers ON StatModifiers.TargetStatId = StatsBase.Id;
---WHERE StatsBase.Type IN (4, 5 ); -- skill/resist
+JOIN StatTypes ON StatTypes.Id = StatsBase.Type
+JOIN StatsBase AS StatsBase2 ON StatsBase2.Id = StatModifiers_map.StatId
+LEFT OUTER JOIN StatModifiers_map ON StatModifiers_map.TargetStatId = StatsBase.Id
+WHERE StatsBase.Type IN (4, 5 ); -- skill/resist
 
 
 SELECT * FROM StatsBase;

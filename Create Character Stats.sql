@@ -1,9 +1,9 @@
 ---------------------------------------------------------------
 -- CREATE CHARACTER STATS
 ---------------------------------------------------------------
-DROP TABLE IF EXISTS StatsCharacter;
+DROP TABLE IF EXISTS CharacterStats;
 
-CREATE TABLE IF NOT EXISTS StatsCharacter
+CREATE TABLE IF NOT EXISTS CharacterStats
 (
     CharacterId INTEGER,
     StatId      INTEGER, -- REFERENCES StatsBase(Id),
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS StatsCharacter
     XpToNextLvl REAL    DEFAULT 0.0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -29,7 +29,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -46,7 +46,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -63,7 +63,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -80,7 +80,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -97,7 +97,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -114,7 +114,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -131,7 +131,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -148,7 +148,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -165,7 +165,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -182,7 +182,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -199,7 +199,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -217,7 +217,7 @@ VALUES
 );
 
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -234,7 +234,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -251,7 +251,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -268,7 +268,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -285,7 +285,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -302,7 +302,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -319,7 +319,7 @@ VALUES
     0
 );
 
-INSERT INTO StatsCharacter
+INSERT INTO CharacterStats
 (
     CharacterId,
     StatId,
@@ -354,10 +354,11 @@ SELECT
     StatsBase.LevelMax,
     StatsBase.ScorePerLvl,
     StatsBase.XPCost,
-    StatsCharacter.Level AS CurrentLvl,
-    StatsCharacter.XPToNextLvl
-FROM StatsCharacter
-JOIN Characters ON Characters.Id = StatsCharacter.CharacterId
-JOIN StatsBase ON StatsBase.Id = StatsCharacter.StatId
-WHERE StatsCharacter.CharacterId = 1;
+    CharacterStats.Level AS CurrentLvl,
+    CharacterStats.XPToNextLvl
+FROM CharacterStats
+JOIN Characters ON Characters.Id = CharacterStats.CharacterId
+JOIN StatsBase ON StatsBase.Id = CharacterStats.StatId
+WHERE CharacterStats.CharacterId = 1;
 
+PRAGMA table_info(statsbase);

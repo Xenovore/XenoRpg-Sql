@@ -1,5 +1,3 @@
-select * from ItemContainers;
-
 SELECT
     Items.Id,
     Items.Name,
@@ -12,18 +10,18 @@ SELECT
     Items.IconIndex,
     Items.SizeW,
     Items.SizeH,
-    Items.LocationX,
-    Items.LocationY,
-    Items.LocationZ,
+    Items.PosX,
+    Items.PosY,
+    Items.PosZ,
     --
-    ItemContainers.ItemTotal,
-    ItemContainers.ItemCap,
-    ItemContainers.VolumeTotal,
-    ItemContainers.VolumeCap,
-    ItemContainers.WeightTotal,
-    ItemContainers.WeightCap,
+    Cont.ItemTotal,
+    Cont.ItemCap,
+    Cont.VolumeTotal,
+    Cont.VolumeCap,
+    Cont.WeightTotal,
+    Cont.WeightCap,
     --
-    ItemTypes.*,
+    --ItemTypes.*,
     Effects.Name,
     Effects.Description,
     Effects.DamageMin,
@@ -45,7 +43,7 @@ SELECT
     Effects.Source,
     Effects.TriggerTypeId
 FROM Items
-JOIN ItemTypes ON ItemTypes.ItemId = Items.Id
-JOIN ItemContainers AS Cont ON Cont.ItemId = Items.Id AND ItemTypes.Container = 1
-JOIN ItemEffects ON ItemEffects.ItemId = Items.Id
-JOIN Effects ON Effects.Id = ItemEffects.EffectId
+--JOIN ItemTypes ON ItemTypes.ItemId = Items.Id
+JOIN ItemContainers_ext AS Cont ON Cont.ItemId = Items.Id -- AND ItemTypes.Container = 1
+JOIN ItemEffects_map ON ItemEffects_map.ItemId = Items.Id
+JOIN Effects ON Effects.Id = ItemEffects_map.EffectId
