@@ -3,16 +3,19 @@ SELECT
     Items.Name,
     Items.Description,
     Items.IsEnabled,
-    Items.Location,
     Items.Weight,
     Items.Quantity,
     Items.QuantityCap,
-    Items.IconIndex,
-    Items.SizeW,
-    Items.SizeH,
-    Items.PosX,
-    Items.PosY,
-    Items.PosZ,
+    --
+	UI.IconIndex,
+	UI.IconFile,
+	UI.ModelFile,
+    UI.SizeW,
+    UI.SizeH,
+    UI.PosX,
+    UI.PosY,
+    UI.PosZ,
+    UI.Location,
     --
     Cont.ItemTotal,
     Cont.ItemCap,
@@ -44,6 +47,8 @@ SELECT
     Effects.TriggerTypeId
 FROM Items
 --JOIN ItemTypes ON ItemTypes.ItemId = Items.Id
+JOIN ItemUI_ext AS UI ON UI.ItemId = Items.Id 
 JOIN ItemContainers_ext AS Cont ON Cont.ItemId = Items.Id -- AND ItemTypes.Container = 1
 JOIN ItemEffects_map ON ItemEffects_map.ItemId = Items.Id
 JOIN Effects ON Effects.Id = ItemEffects_map.EffectId
+--TODO: EFFECTS NEEDS TO BE SEPARATE SINCE IT'S A LIST
