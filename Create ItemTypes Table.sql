@@ -1,7 +1,6 @@
 --------------------------------------------------------------
 -- CREATE ITEM TYPES
 --------------------------------------------------------------
---BEGIN;
 
 DROP TABLE IF EXISTS ItemTypes;
 
@@ -11,6 +10,9 @@ CREATE TABLE IF NOT EXISTS ItemTypes
     Value INT,
     IconIdx INT
 );
+
+
+BEGIN;
 
 INSERT INTO ItemTypes VALUES ( "None"      ,    0x0000000000000000, 00 ); -- 00 (# = primary bit flag)
                                                 
@@ -22,7 +24,8 @@ INSERT INTO ItemTypes VALUES ( "Container" ,    0x0000000000000007, 04 );
 
 INSERT INTO ItemTypes VALUES ( "Backpack"  ,    0x0000000000000009, 04 ); -- Endo, back
 INSERT INTO ItemTypes VALUES ( "BackSheath",    0x000000000B00000C, 04 ); -- Exo, back: Holds any weapon except thrown
-INSERT INTO ItemTypes VALUES ( "Sheath"    ,    0x0000000001000002, 00 ); -- sword only
+INSERT INTO ItemTypes VALUES ( "Sheath"    ,    0x0000000001000002, 00 ); -- Sword only (WeaponBlade & ContSlot)
+INSERT INTO ITemTypes VALUES ( "Bottle"    ,    0x0000001000000002, 00 ); -- Liquid-only container (Liquid & ContSlot)
 
 
 -- BODY SLOT LOCATIONS, what fits where
@@ -177,6 +180,6 @@ INSERT INTO ItemTypes VALUES ( "Unused16"     , 0x8000000000000000, 00 ); -- 64
 
 INSERT INTO ItemTypes VALUES ( "Any"          , 0xFFFFFFFFFFFFFFFF, 02 );
 
---COMMIT;
+COMMIT;
 
 SELECT Name, printf('%016X', Value) AS Value, IconIdx FROM ItemTypes;

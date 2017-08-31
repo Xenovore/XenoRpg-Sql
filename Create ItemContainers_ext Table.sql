@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS ItemContainers_ext;
 
 CREATE TABLE IF NOT EXISTS ItemContainers_ext
 (
-    ItemId      INTEGER PRIMARY KEY, -- Should always match an item in Items table
+    ItemId      INTEGER PRIMARY KEY REFERENCES Items (Id), -- Should always match an item in Items table
     ItemTotal   INTEGER DEFAULT 0,
     ItemCap     INTEGER DEFAULT 0,   -- 0 = no cap
     VolumeTotal INTEGER DEFAULT 0,
@@ -16,3 +16,4 @@ CREATE TABLE IF NOT EXISTS ItemContainers_ext
     Locked      INTEGER DEFAULT 0    -- 0 = unlocked, 1+ = lock difficulty
 );
  
+COMMIT;

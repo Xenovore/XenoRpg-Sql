@@ -169,7 +169,7 @@ VALUES
 (
     "Small Health Potion",
     "Heals up to 30 hp.",
-    0x09, -- liquid container
+    0x0000001000000002, -- liquid container
     1,
     2,
     3
@@ -188,7 +188,7 @@ VALUES
 (
     "Medium Health Potion",
     "Heals up to 100 hp.",
-    0x09, -- liquid container
+    0x0000001000000002, -- liquid container
     2,
     2,
     5
@@ -207,7 +207,7 @@ VALUES
 (
     "Empty Bottle",
     "Bone dry",
-    0x09, -- liquid container
+    0x0000001000000002, -- liquid container
     2,
     2,
     1
@@ -215,23 +215,18 @@ VALUES
 
 
 -- TEST CONTAINER INFO
-INSERT INTO ItemContainers_ext ( ItemId ) VALUES ( 1 ); -- Fiery box
-INSERT INTO ItemContainers_ext ( ItemId ) VALUES ( 2 ); -- small pouch
-INSERT INTO ItemContainers_ext ( ItemId ) VALUES ( 3 ); -- plastic sack
+--INSERT INTO ItemContainers_ext ( ItemId ) VALUES ( 1 ); -- Fiery box
+--INSERT INTO ItemContainers_ext ( ItemId ) VALUES ( 2 ); -- small pouch
+--INSERT INTO ItemContainers_ext ( ItemId ) VALUES ( 3 ); -- plastic sack
 
--- TEST CONTAINER ITEMS MAP
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 1, 5 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 1, 6 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 1, 7 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 1, 8 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 1, 9 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 2, 4 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 2, 14 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 2, 15 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 2, 10 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 2, 11 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 2, 12 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 3, 2 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 3, 1 );
-INSERT INTO ContainerItems_map ( Id, ItemId ) VALUES ( 3, 13 );
 
+-- WITH THE LEFT JOIN AND THE NULL CHECK ON ItemContainers_ext.ItemId, this will return all
+-- rows that are not containers; i.e. ItemContainers_ext has no matching records
+select
+    ItemTypes.Name,
+    items.*,
+    ItemContainers_ext.*
+from items
+left join ItemContainers_ext on ItemContainers_ext.ItemId = items.Id
+join ItemTypes on ItemTypes.Value = Items.Type
+where ItemContainers_ext.itemId is null;
