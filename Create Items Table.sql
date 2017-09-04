@@ -23,15 +23,15 @@ CREATE TABLE IF NOT EXISTS Items
 );
 
 ---------------------------------------------------------------
--- ITEM EFFECTS
--- • What effects are attached to item
+-- CREATE ITEM EFFECTS MAP TABLE
+-- • What effects are attached to each item
 ---------------------------------------------------------------
 DROP TABLE IF EXISTS ItemEffects_map;
 
 CREATE TABLE ItemEffects_map
 (
-    ItemId INTEGER,
-    EffectId INTEGER
+    ItemId INTEGER, -- TODO: Set foreign key?
+    EffectId INTEGER -- TODO: Set foreign key?
 );
 
 INSERT INTO ItemEffects_map

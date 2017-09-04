@@ -1,5 +1,5 @@
 --------------------------------------------------------------
--- CREATE ITEM TYPES
+-- CREATE & INSERT ITEM TYPES
 --------------------------------------------------------------
 
 DROP TABLE IF EXISTS ItemTypes;
@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS ItemTypes
 
 
 BEGIN;
-
 INSERT INTO ItemTypes VALUES ( "None"      ,    0x0000000000000000, 00 ); -- 00 (# = primary bit flag)
                                                 
 -- CONTAINERS                                   
@@ -179,7 +178,8 @@ INSERT INTO ItemTypes VALUES ( "Unused15"     , 0x4000000000000000, 00 ); -- 63
 INSERT INTO ItemTypes VALUES ( "Unused16"     , 0x8000000000000000, 00 ); -- 64
 
 INSERT INTO ItemTypes VALUES ( "Any"          , 0xFFFFFFFFFFFFFFFF, 02 );
-
+END;
 COMMIT;
 
+-- Use this printf to display hex values...
 SELECT Name, printf('%016X', Value) AS Value, IconIdx FROM ItemTypes;

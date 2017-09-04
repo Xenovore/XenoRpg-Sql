@@ -1,15 +1,16 @@
 ---------------------------------------------------------------
 -- EFFECTS
 -- • Effects that can be applied to items and spells
+-- • EXACTLY ONE TYPE PER EFFECT: e.g. fire, poison, cold, etc.
 ---------------------------------------------------------------
 DROP TABLE IF EXISTS Effects; --temp
 
 CREATE TABLE IF NOT EXISTS Effects
 (
     Id            INTEGER       PRIMARY KEY AUTOINCREMENT,
-    Name          VARCHAR (32),
-    Description   VARCHAR (255),
-    -- Type in EffectTypes
+    Name          VARCHAR (32)  DEFAULT "",
+    Description   VARCHAR (256) DEFAULT "",
+    TypeId        INTEGER, -- ID into EffectTypes
     -- TargetId: prolly don't need in DB
     DamageMin     REAL          DEFAULT 0, -- negative value = heal
     DamageMax     REAL          DEFAULT 0, -- Damage = ( Rand( Max-Min ) + Min ) * Scale
@@ -43,8 +44,8 @@ INSERT INTO Effects
 )
 VALUES
 (
-    "Bleed 3 over 5",
-    "Physical DOT, 3 hp for 5 seconds",
+    "Bleed 15 over 5",
+    "Physical DOT, 3 hp per second for 5 seconds",
     3,
     3,
     5000,
@@ -85,9 +86,8 @@ DROP TABLE IF EXISTS EffectTypes;
 CREATE TABLE IF NOT EXISTS EffectTypes
 (
     Id INTEGER PRIMARY KEY AUTOINCREMENT,
-    EffectId INTEGER, -- Effect that this belongs to
-    Name VARCHAR( 16 )
-    
+    Name VARCHAR( 32 ) DEFAULT "",
+    Description VARCHAR( 256 ) DEFAULT ""
 );
 
 -------------------------------------------------------------------
@@ -102,3 +102,5 @@ CREATE TABLE IF NOT EXISTS EffectTriggers
     NAME VARCHAR( 16 )
     
 );
+
+
