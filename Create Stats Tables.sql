@@ -27,22 +27,22 @@ SELECT * FROM StatTypes;
 ---------------------------------------------------------------
 DROP TABLE IF EXISTS StatsBase;
 
-CREATE TABLE IF NOT EXISTS StatsBase
-(
-    Id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name         VARCHAR( 16 ) UNIQUE,
-    Abbr         VARCHAR( 6 )  UNIQUE,
-    Type         INTEGER       DEFAULT 1,  
-    LevelMin     REAL          DEFAULT 10.0,  
-    LevelBaseLo  REAL          DEFAULT 50.0,  
-    LevelBaseHi  REAL          DEFAULT 50.0,  
-    LevelMax     REAL          DEFAULT 100.0, 
-    ScorePerLvl  REAL          DEFAULT 1.0,   
-    XPCost       REAL          DEFAULT 1000.0,
-    ApplyType    INTEGER       DEFAULT 1,  
-    ApplyHow     INTEGER       DEFAULT 1,  
-    ApplyPercent REAL          DEFAULT 1.0,
-    Description  VARCHAR( 256 )
+CREATE TABLE StatsBase (
+    Id           INTEGER       PRIMARY KEY AUTOINCREMENT,
+    Name         VARCHAR (16)  UNIQUE,
+    Abbr         VARCHAR (6)   UNIQUE,
+    TypeId       INTEGER       DEFAULT 1
+                               REFERENCES StatTypes (Id),
+    LevelMin     REAL          DEFAULT 10,
+    LevelBaseLo  REAL          DEFAULT 50,
+    LevelBaseHi  REAL          DEFAULT 50,
+    LevelMax     REAL          DEFAULT 100,
+    ScorePerLvl  REAL          DEFAULT 1,
+    XPCost       REAL          DEFAULT 1000,
+    ApplyType    INTEGER       DEFAULT 1,
+    ApplyHow     INTEGER       DEFAULT 1,
+    ApplyPercent REAL          DEFAULT 1,
+    Description  VARCHAR (256) DEFAULT "" 
 );
 
 -- Apply example: If Str and Dex both apply to Sword, maybe Str.% = 0.20, Dex.% = 0.80.
