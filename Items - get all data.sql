@@ -50,5 +50,5 @@ FROM Items
 JOIN ItemUI_ext AS UI ON UI.ItemId = Items.Id 
 JOIN ItemContainers_ext AS Cont ON Cont.ItemId = Items.Id -- AND ItemTypes.Container = 1
 JOIN ItemEffects_map ON ItemEffects_map.ItemId = Items.Id
-JOIN Effects ON Effects.Id = ItemEffects_map.EffectId
+JOIN Effects ON Effects.Id = ItemEffects_map.EffectId;
 --TODO: EFFECTS NEEDS TO BE SEPARATE SINCE IT'S A LIST

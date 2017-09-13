@@ -289,3 +289,21 @@ FROM ContainerItems_map AS ContMap
 LEFT JOIN Items ON Items.Id = ContMap.ItemId
 JOIN ItemTypes ON ItemTypes.Value = Items.Type
 JOIN ItemContainers_ext ON ItemContainers_ext.ItemId = ContMap.ItemId;
+
+------------------------------------------------------------------------
+SELECT
+    ContMap.Id AS ContId,
+    Items.Id,
+    Items.Name,
+    Items.Description,
+    printf('%016X', Items.Type) AS TypeHex,
+    Items.Weight,
+    Items.IsEnabled,
+    Items.Quantity,
+    Items.QuantityCap,
+    Items.Location,
+    printf('%d, %d', Items.SizeW, Items.SizeH ) AS Size,
+    ItemContainers_ext.*
+FROM ContainerItems_map AS ContMap
+JOIN Items ON Items.Id = ContMap.ItemId
+JOIN ItemContainers_ext ON ItemContainers_ext.ItemId = ContMap.ItemId;

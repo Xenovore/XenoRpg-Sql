@@ -26,7 +26,6 @@ INSERT INTO ItemTypes VALUES ( "BackSheath",    0x000000000B00000C, 04 ); -- Exo
 INSERT INTO ItemTypes VALUES ( "Sheath"    ,    0x0000000001000002, 00 ); -- Sword only (WeaponBlade & ContSlot)
 INSERT INTO ITemTypes VALUES ( "Bottle"    ,    0x0000001000000002, 00 ); -- Liquid-only container (Liquid & ContSlot)
 
-
 -- BODY SLOT LOCATIONS, what fits where
 INSERT INTO ItemTypes VALUES ( "BodyBack"     , 0x0000000000000008, 05 ); -- 04
 INSERT INTO ItemTypes VALUES ( "BodyHead"     , 0x0000000000000010, 05 ); -- 05 
@@ -175,9 +174,9 @@ INSERT INTO ItemTypes VALUES ( "Unused12"     , 0x0800000000000000, 00 ); -- 60
 INSERT INTO ItemTypes VALUES ( "Unused13"     , 0x1000000000000000, 00 ); -- 61
 INSERT INTO ItemTypes VALUES ( "Unused14"     , 0x2000000000000000, 00 ); -- 62
 INSERT INTO ItemTypes VALUES ( "Unused15"     , 0x4000000000000000, 00 ); -- 63
-INSERT INTO ItemTypes VALUES ( "Unused16"     , 0x8000000000000000, 00 ); -- 64
 
-INSERT INTO ItemTypes VALUES ( "Any"          , 0xFFFFFFFFFFFFFFFF, 02 );
+INSERT INTO ItemTypes VALUES ( "NegativeDoNotUse", 0x8000000000000000, 00 ); -- 64 *** negative value in SQLite; Dapper will not convert to ulong
+
 END;
 COMMIT;
 
