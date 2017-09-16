@@ -151,7 +151,7 @@ VALUES
 (
     "Scroll",
     "Scroll of scrollness",
-    0xFFFFFFFFFFFFFFFF, -- any
+    0x0000004000000000, -- paper
     1,
     2
 );
@@ -222,11 +222,27 @@ VALUES
 
 -- WITH THE LEFT JOIN AND THE NULL CHECK ON ItemContainers_ext.ItemId, this will return all
 -- rows that are not containers; i.e. ItemContainers_ext has no matching records
-select
-    ItemTypes.Name,
-    items.*,
+SELECT
+    Id,
+    Items.Name,
+    Items.Description,
+    Items.Type,
+    ItemTypes.Name AS TypeName,
+    Items.Weight,
+    Items.IsEnabled,
+    Items.Quantity,
+    Items.QuantityCap,
+    Items.Location,
+    Items.IconIndex,
+    Items.SizeW,
+    Items.SizeH,
+    Items.PosX,
+    Items.PosY,
+    Items.PosZ,
     ItemContainers_ext.*
-from items
-left join ItemContainers_ext on ItemContainers_ext.ItemId = items.Id
-join ItemTypes on ItemTypes.Value = Items.Type
-where ItemContainers_ext.itemId is null;
+FROM items
+LEFT JOIN ItemContainers_ext ON ItemContainers_ext.ItemId = items.Id
+JOIN ItemTypes ON ItemTypes.Value = Items.Type
+WHERE ItemContainers_ext.itemId IS NULL;
+
+update items set Type = 0x0000004000000000 where Name = 'Scroll';
