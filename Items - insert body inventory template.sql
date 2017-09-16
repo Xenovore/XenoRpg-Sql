@@ -1,6 +1,8 @@
 -------------------------------------------------------------
 -- BUILD CHARACTER BODY CONTAINER TEMPLATE
 -- • When creating new character, read these, then save as new tree
+-- • "Locked" means it cannot be accessed in-game
+-- • "IsEnabled" means it cannot be edited or accessed in-game
 -------------------------------------------------------------
 
 /*
@@ -15,9 +17,6 @@ BEGIN
   INSERT INTO Items( Name, Type )  
 END;
 */
-select * from items;
-select * from ItemContainers_ext;
-select * from ContainerItems_map;
 
 -- NOTE: Pending transactions must be committed before starting a new one!
 BEGIN;
@@ -267,6 +266,10 @@ INSERT INTO ContainerItems_map ( Id, ItemId )                   VALUES (  0, las
     -- ANKLE JEWELRY WOULD PARENT TO FEET
 COMMIT;
 
+-- Disable (no modification) template items by default
+UPDATE Items SET IsEnabled = 0 WHERE Name LIKE '_%';
+Commit;
+
 ----------------------------------------------------------------------
 -- STEPS TO GET CHAR. INVENTORY
 -- 1) Fetch Body Container ID by char. ID
@@ -279,6 +282,7 @@ SELECT ContMap.* FROM ContainerItems_map AS ContMap
 WHERE ContMap.Id = 4; --@BodyContId
 
 
+------------------------------------------------------------------------
 SELECT
     ItemTypes.Name AS 'Type Name',
     ContMap.Id AS ContId,
@@ -291,12 +295,18 @@ JOIN ItemTypes ON ItemTypes.Value = Items.Type
 JOIN ItemContainers_ext ON ItemContainers_ext.ItemId = ContMap.ItemId;
 
 ------------------------------------------------------------------------
+select * from items;
+select * from ItemContainers_ext;
+select * from ContainerItems_map;
+
+------------------------------------------------------------------------
 SELECT
-    ContMap.Id AS ContId,
     Items.Id,
     Items.Name,
     Items.Description,
     printf('%016X', Items.Type) AS TypeHex,
+    ItemTypes.Name AS TypeName,
+    ContMap.Id AS ParentContId,
     Items.Weight,
     Items.IsEnabled,
     Items.Quantity,
@@ -305,5 +315,7 @@ SELECT
     printf('%d, %d', Items.SizeW, Items.SizeH ) AS Size,
     ItemContainers_ext.*
 FROM ContainerItems_map AS ContMap
-JOIN Items ON Items.Id = ContMap.ItemId
-JOIN ItemContainers_ext ON ItemContainers_ext.ItemId = ContMap.ItemId;
+LEFT JOIN Items ON Items.Id = ContMap.ItemId
+JOIN ItemContainers_ext ON ItemContainers_ext.ItemId = ContMap.ItemId
+JOIN ItemTypes on ItemTypes.Value = Items.Type;
+

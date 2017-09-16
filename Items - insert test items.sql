@@ -1,6 +1,7 @@
 --------------------------------------------------------------
 -- INSERT TEST ITEMS
 --------------------------------------------------------------
+BEGIN;
 INSERT INTO Items
 (
     Name,
@@ -212,6 +213,8 @@ VALUES
     2,
     1
 );
+END;
+COMMIT;
 
 
 -- TEST CONTAINER INFO
@@ -245,4 +248,4 @@ LEFT JOIN ItemContainers_ext ON ItemContainers_ext.ItemId = items.Id
 JOIN ItemTypes ON ItemTypes.Value = Items.Type
 WHERE ItemContainers_ext.itemId IS NULL;
 
-update items set Type = 0x0000004000000000 where Name = 'Scroll';
+select * from items;
