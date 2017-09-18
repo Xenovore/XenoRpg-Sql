@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS ItemTypes;
 CREATE TABLE IF NOT EXISTS ItemTypes
 (
     Name VARCHAR( 16 ),
-    Value INT,
-    IconIdx INT
+    Value INTEGER,
+    IconIdx INTEGER
 );
 
 
@@ -43,10 +43,10 @@ INSERT INTO ItemTypes VALUES ( "BodyFoot"     , 0x0000000000008000, 05 ); -- 16
 INSERT INTO ItemTypes VALUES ( "Body"         , 0x000000000000FFF8, 05 );
 
 -- APPAREL SLOT TYPES
-INSERT INTO ItemTypes VALUES ( "Cloth"        , 0x0000000000010000, 03 ); -- 17
-INSERT INTO ItemTypes VALUES ( "Leather"      , 0x0000000000020000, 03 ); -- 18
-INSERT INTO ItemTypes VALUES ( "Chain"        , 0x0000000000040000, 03 ); -- 19
-INSERT INTO ItemTypes VALUES ( "Plate"        , 0x0000000000080000, 03 ); -- 20
+INSERT INTO ItemTypes VALUES ( "ApparelCloth"  , 0x0000000000010000, 03 ); -- 17
+INSERT INTO ItemTypes VALUES ( "ApparelLeather", 0x0000000000020000, 03 ); -- 18
+INSERT INTO ItemTypes VALUES ( "ApparelChain"  , 0x0000000000040000, 03 ); -- 19
+INSERT INTO ItemTypes VALUES ( "ApparelPlate"  , 0x0000000000080000, 03 ); -- 20
 
 INSERT INTO ItemTypes VALUES ( "ClothBack"    , 0x0000000000010008, 03 ); -- Cloak?
 INSERT INTO ItemTypes VALUES ( "ClothHead"    , 0x0000000000010010, 03 );
@@ -153,7 +153,7 @@ INSERT INTO ItemTypes VALUES ( "Tool2"        , 0x0000080000000000, 00 ); -- 44 
 
 INSERT INTO ItemTypes VALUES ( "Wood"         , 0x0000100000000000, 00 ); -- 45
 INSERT INTO ItemTypes VALUES ( "Metal"        , 0x0000200000000000, 00 ); -- 46
-INSERT INTO ItemTypes VALUES ( "Leather"      , 0x0000400000000000, 00 ); -- 47
+INSERT INTO ItemTypes VALUES ( "Leather2"     , 0x0000400000000000, 00 ); -- 47
 INSERT INTO ItemTypes VALUES ( "Plastic"      , 0x0000800000000000, 00 ); -- 48
 
 INSERT INTO ItemTypes VALUES ( "Unused01"     , 0x0001000000000000, 00 ); -- 49
@@ -175,10 +175,12 @@ INSERT INTO ItemTypes VALUES ( "Unused13"     , 0x1000000000000000, 00 ); -- 61
 INSERT INTO ItemTypes VALUES ( "Unused14"     , 0x2000000000000000, 00 ); -- 62
 INSERT INTO ItemTypes VALUES ( "Unused15"     , 0x4000000000000000, 00 ); -- 63
 
-INSERT INTO ItemTypes VALUES ( "NegativeDoNotUse", 0x8000000000000000, 00 ); -- 64 *** negative value in SQLite; Dapper will not convert to ulong
+INSERT INTO ItemTypes VALUES ( "Any"          , 0x4FFFFFFFFFFFFFFF, 00 ); -- 63
 
+--INSERT INTO ItemTypes VALUES ( "NegativeDoNotUse", 0x8000000000000000, 00 ); -- 64 *** negative value in SQLite; Dapper will not convert to ulong
 END;
 COMMIT;
 
 -- Use this printf to display hex values...
 SELECT Name, printf('%016X', Value) AS Value, IconIdx FROM ItemTypes;
+select * from itemtypes;
