@@ -23,8 +23,8 @@ INSERT INTO ItemTypes VALUES ( "Container" ,    0x0000000000000007, 04 );
 
 INSERT INTO ItemTypes VALUES ( "Backpack"  ,    0x0000000000000009, 04 ); -- Endo, back
 INSERT INTO ItemTypes VALUES ( "BackSheath",    0x000000000B00000C, 04 ); -- Exo, back: Holds any weapon except thrown
-INSERT INTO ItemTypes VALUES ( "Sheath"    ,    0x0000000001000002, 00 ); -- Sword only (WeaponBlade & ContSlot)
-INSERT INTO ITemTypes VALUES ( "Bottle"    ,    0x0000001000000002, 00 ); -- Liquid-only container (Liquid & ContSlot)
+INSERT INTO ItemTypes VALUES ( "Sheath"    ,    0x0000000001000002, 14 ); -- Sword only (WeaponBlade & ContSlot)
+INSERT INTO ITemTypes VALUES ( "Bottle"    ,    0x0000001000000002, 06 ); -- Liquid-only container (Liquid & ContSlot)
 
 -- BODY SLOT LOCATIONS, what fits where
 INSERT INTO ItemTypes VALUES ( "BodyBack"     , 0x0000000000000008, 05 ); -- 04
@@ -104,9 +104,9 @@ INSERT INTO ItemTypes VALUES ( "Bracelet"     , 0x0000000000100800, 13 );
 INSERT INTO ItemTypes VALUES ( "Ring"         , 0x0000000000101000, 13 );
 INSERT INTO ItemTypes VALUES ( "Anklet"       , 0x0000000000108000, 13 );
 
-INSERT INTO ItemTypes VALUES ( "SideRight"    , 0x0000000000200000, 00 ); -- 22  
-INSERT INTO ItemTypes VALUES ( "SideLeft"     , 0x0000000000400000, 00 ); -- 23
-INSERT INTO ItemTypes VALUES ( "TwoHanded"    , 0x0000000000600000, 00 ); --     (Two-hand slot: bow or 2-H sword/staff)
+INSERT INTO ItemTypes VALUES ( "SideRight"    , 0x0000000000200000, 14 ); -- 22  
+INSERT INTO ItemTypes VALUES ( "SideLeft"     , 0x0000000000400000, 14 ); -- 23
+INSERT INTO ItemTypes VALUES ( "TwoHanded"    , 0x0000000000600000, 14 ); --     (Two-hand slot: bow or 2-H sword/staff)
 
 INSERT INTO ItemTypes VALUES ( "Shield"       , 0x0000000000800000, 00 ); -- 24  (Might have shield-only slot)
 
@@ -123,10 +123,10 @@ INSERT INTO ItemTypes VALUES ( "AmmoBullet"   , 0x0000000040000000, 01 ); -- 31
 INSERT INTO ItemTypes VALUES ( "AmmoUnused"   , 0x0000000080000000, 01 ); -- 32 (Grenade?)
 INSERT INTO ItemTypes VALUES ( "Ammo"         , 0x00000000F0000000, 01 );
 
-INSERT INTO ItemTypes VALUES ( "QuiverArrows" , 0x0000000010000001, 00 );
-INSERT INTO ItemTypes VALUES ( "QuiverBolts"  , 0x0000000020000001, 00 );
-INSERT INTO ItemTypes VALUES ( "Magazine"     , 0x0000000040000001, 00 ); -- bullet bag, etc
-INSERT INTO ItemTypes VALUES ( "AmmoContainer", 0x0000000080000001, 00 ); -- bullet bag, etc
+INSERT INTO ItemTypes VALUES ( "QuiverArrows" , 0x0000000010000001, 04 );
+INSERT INTO ItemTypes VALUES ( "QuiverBolts"  , 0x0000000020000001, 04 );
+INSERT INTO ItemTypes VALUES ( "Magazine"     , 0x0000000040000001, 04 ); -- bullet bag, etc
+INSERT INTO ItemTypes VALUES ( "AmmoContainer", 0x0000000080000001, 04 ); -- bullet bag, etc
 
 --....................................................................... (beyond 32 bits)
 
@@ -135,7 +135,7 @@ INSERT INTO ItemTypes VALUES ( "Gem"          , 0x0000000200000000, 09 ); -- 34
 INSERT INTO ItemTypes VALUES ( "Herb"         , 0x0000000400000000, 10 ); -- 35 (reagent)
 INSERT INTO ItemTypes VALUES ( "Craft"        , 0x0000000800000000, 00 ); -- 36 (Craft item; might have craft bags)
 
-INSERT INTO ItemTypes VALUES ( "Liquid"       , 0x0000001000000000, 00 ); -- 37 (Goes in liquid-only containers, e.g. bottles, jars...)
+INSERT INTO ItemTypes VALUES ( "Liquid"       , 0x0000001000000000, 11 ); -- 37 (Goes in liquid-only containers, e.g. bottles, jars...)
 INSERT INTO ItemTypes VALUES ( "Powder"       , 0x0000002000000000, 00 ); -- 38 (Goes in powder-only container, e.g. flour -> sack)
 INSERT INTO ItemTypes VALUES ( "Paper"        , 0x0000004000000000, 00 ); -- 39 (Can be written on or used as craft item: note etc.)
 INSERT INTO ItemTypes VALUES ( "Socketable"   , 0x0000008000000000, 00 ); -- 40 (Can be placed in socket)
@@ -156,26 +156,26 @@ INSERT INTO ItemTypes VALUES ( "Metal"        , 0x0000200000000000, 00 ); -- 46
 INSERT INTO ItemTypes VALUES ( "Leather2"     , 0x0000400000000000, 00 ); -- 47
 INSERT INTO ItemTypes VALUES ( "Plastic"      , 0x0000800000000000, 00 ); -- 48
 
-INSERT INTO ItemTypes VALUES ( "Unused01"     , 0x0001000000000000, 00 ); -- 49
-INSERT INTO ItemTypes VALUES ( "Unused02"     , 0x0002000000000000, 00 ); -- 50
-INSERT INTO ItemTypes VALUES ( "Unused03"     , 0x0004000000000000, 00 ); -- 51
-INSERT INTO ItemTypes VALUES ( "Unused04"     , 0x0008000000000000, 00 ); -- 52
+INSERT INTO ItemTypes VALUES ( "Unused01"     , 0x0001000000000000, 02 ); -- 49
+INSERT INTO ItemTypes VALUES ( "Unused02"     , 0x0002000000000000, 02 ); -- 50
+INSERT INTO ItemTypes VALUES ( "Unused03"     , 0x0004000000000000, 02 ); -- 51
+INSERT INTO ItemTypes VALUES ( "Unused04"     , 0x0008000000000000, 02 ); -- 52
 
-INSERT INTO ItemTypes VALUES ( "Unused05"     , 0x0010000000000000, 00 ); -- 53
-INSERT INTO ItemTypes VALUES ( "Unused06"     , 0x0020000000000000, 00 ); -- 54
-INSERT INTO ItemTypes VALUES ( "Unused07"     , 0x0040000000000000, 00 ); -- 55
-INSERT INTO ItemTypes VALUES ( "Unused08"     , 0x0080000000000000, 00 ); -- 56
+INSERT INTO ItemTypes VALUES ( "Unused05"     , 0x0010000000000000, 02 ); -- 53
+INSERT INTO ItemTypes VALUES ( "Unused06"     , 0x0020000000000000, 02 ); -- 54
+INSERT INTO ItemTypes VALUES ( "Unused07"     , 0x0040000000000000, 02 ); -- 55
+INSERT INTO ItemTypes VALUES ( "Unused08"     , 0x0080000000000000, 02 ); -- 56
 
-INSERT INTO ItemTypes VALUES ( "Unused09"     , 0x0100000000000000, 00 ); -- 57
-INSERT INTO ItemTypes VALUES ( "Unused10"     , 0x0200000000000000, 00 ); -- 58
-INSERT INTO ItemTypes VALUES ( "Unused11"     , 0x0400000000000000, 00 ); -- 59
-INSERT INTO ItemTypes VALUES ( "Unused12"     , 0x0800000000000000, 00 ); -- 60
+INSERT INTO ItemTypes VALUES ( "Unused09"     , 0x0100000000000000, 02 ); -- 57
+INSERT INTO ItemTypes VALUES ( "Unused10"     , 0x0200000000000000, 02 ); -- 58
+INSERT INTO ItemTypes VALUES ( "Unused11"     , 0x0400000000000000, 02 ); -- 59
+INSERT INTO ItemTypes VALUES ( "Unused12"     , 0x0800000000000000, 02 ); -- 60
 
-INSERT INTO ItemTypes VALUES ( "Unused13"     , 0x1000000000000000, 00 ); -- 61
-INSERT INTO ItemTypes VALUES ( "Unused14"     , 0x2000000000000000, 00 ); -- 62
-INSERT INTO ItemTypes VALUES ( "Unused15"     , 0x4000000000000000, 00 ); -- 63
+INSERT INTO ItemTypes VALUES ( "Unused13"     , 0x1000000000000000, 02 ); -- 61
+INSERT INTO ItemTypes VALUES ( "Unused14"     , 0x2000000000000000, 02 ); -- 62
+INSERT INTO ItemTypes VALUES ( "Unused15"     , 0x4000000000000000, 02 ); -- 63
 
-INSERT INTO ItemTypes VALUES ( "Any"          , 0x4FFFFFFFFFFFFFFF, 00 ); -- 63
+INSERT INTO ItemTypes VALUES ( "Any"          , 0x4FFFFFFFFFFFFFFF, 02 ); -- 63
 
 --INSERT INTO ItemTypes VALUES ( "NegativeDoNotUse", 0x8000000000000000, 00 ); -- 64 *** negative value in SQLite; Dapper will not convert to ulong
 END;
