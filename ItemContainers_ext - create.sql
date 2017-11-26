@@ -1,8 +1,14 @@
 ---------------------------------------------------------------
 -- CREATE CONTAINERS
 ---------------------------------------------------------------
-DROP TABLE IF EXISTS ItemContainers_ext;
 
+DROP TABLE IF EXISTS ContainerStyles;
+CREATE TABLE ContainerStyles (
+    Id   INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name VARCHAR (32) 
+);
+
+DROP TABLE IF EXISTS ItemContainers_ext;
 CREATE TABLE IF NOT EXISTS ItemContainers_ext
 (
     ItemId      INTEGER PRIMARY KEY REFERENCES Items (Id), -- Should always match an item in Items table
@@ -13,7 +19,8 @@ CREATE TABLE IF NOT EXISTS ItemContainers_ext
     WeightTotal REAL    DEFAULT 0.0,
     WeightCap   REAL    DEFAULT 0.0, -- 0 = no cap
     TypeAllowed INTEGER DEFAULT -1,  -- 0xFFFFFFFFFFFFFFFF = any and all
-    Locked      INTEGER DEFAULT 0    -- 0 = unlocked, 1+ = lock difficulty
+    Locked      INTEGER DEFAULT 0,   -- 0 = unlocked, 1+ = lock difficulty
+    Style       INTEGER DEFAULT 1 REFERENCES ContainerStyles (Id)   -- Style (type) of container
 );
- 
+
 COMMIT;
