@@ -11,29 +11,13 @@ CREATE TABLE IF NOT EXISTS Professions
     Description VARCHAR(1000)  DEFAULT ""
 );
 
-INSERT INTO Professions
-(Name)
-VALUES("Warrior");
-
-INSERT INTO Professions
-(Name)
-VALUES("Rogue");
-
-INSERT INTO Professions
-(Name)
-VALUES("Hunter");
-
-INSERT INTO Professions
-(Name)
-VALUES("Druid");
-
-INSERT INTO Professions
-(Name)
-VALUES("Mage");
-
-INSERT INTO Professions
-(Name)
-VALUES("Priest");
+INSERT INTO Professions VALUES ( 0, "None", "" );
+INSERT INTO Professions (Name) VALUES ("Warrior");
+INSERT INTO Professions (Name) VALUES ("Rogue");
+INSERT INTO Professions (Name) VALUES ("Hunter");
+INSERT INTO Professions (Name) VALUES ("Druid");
+INSERT INTO Professions (Name) VALUES ("Mage");
+INSERT INTO Professions (Name) VALUES ("Priest");
 
 select * from Professions;
 

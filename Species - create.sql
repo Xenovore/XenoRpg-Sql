@@ -18,6 +18,10 @@ CREATE TABLE IF NOT EXISTS Species
 );
 
 INSERT INTO Species
+(Id, Name, NameSub, IsPlayable)
+VALUES( 0, "None", "Invalid", 0 );
+
+INSERT INTO Species
 (Name, NameSub, IsPlayable)
 VALUES("Human", "White", 1);
 
